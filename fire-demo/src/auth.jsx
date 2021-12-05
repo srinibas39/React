@@ -53,8 +53,9 @@ let Auth = () => {
               signIn();
             }}
           >
-            signUp
+            signIn
           </button>
+          <button onClick={()=>{signUp()}} >sign up</button>
         </div>
       ) : (
         <>
