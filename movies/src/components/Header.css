@@ -1,0 +1,27 @@
+
+.header{
+    background-color: #EF4444;
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    margin-bottom: 1px;
+    margin: none;
+}
+
+h3{
+    padding: 1rem;
+}
+
+.link{
+    text-decoration: none;
+   
+    color: white;
+    
+   
+}
+.no-hover:focus{
+    color: white;
+}
+.no-hover:hover{
+    color: white;
+}

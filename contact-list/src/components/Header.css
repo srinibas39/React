@@ -1,0 +1,12 @@
+.header{
+    margin: 0px;
+    background-color: #BFDBFE;
+    height: 5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.header h1{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}

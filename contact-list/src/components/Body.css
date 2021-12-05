@@ -1,0 +1,46 @@
+label{
+    margin: 10px;
+}
+
+
+
+.submit{
+    margin: 10px;
+    padding: 6px 8px;
+    color: grey;
+    background-color: #BFDBFE;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+
+}
+
+ul{
+    background-color: #F3F4F6;
+    list-style: none;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+ul div{
+    display: flex;
+    justify-content:space-between;
+}
+
+ul button{
+    padding: 5px 7px;
+    background-color: #EF4444;
+    color: white;
+    border: none;
+    border-radius: 2px;
+}
+ul div{
+    margin: 1rem;
+}
+
+.input-area{
+    text-align: center;
+}
+input{
+    font-weight: bold;
+}

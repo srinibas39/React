@@ -1,0 +1,44 @@
+.banner-card {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border: none;
+  color: white;
+}
+img{
+    height: 70vh;
+
+}
+.banner-title {
+    text-align: center;
+    
+    font-weight: bold;
+    font-size: 2rem;
+}
+.banner-text {
+    text-align: center;
+}
+a {
+}
+.b-card{
+ 
+    position: absolute;
+    bottom: 0px;
+}
+
+@media screen and (max-width:400px ) {
+    img{
+        height: 52vh;
+    }
+    .banner-title {
+        text-align: center;
+        
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    .banner-text {
+        text-align: center;
+        font-size: 11px;
+    }
+}
+
