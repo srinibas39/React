@@ -1,29 +1,33 @@
 import React from 'react'
 import SignUp from './components/signUp'
 
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  BrowserRouter,
-  
-} from "react-router-dom";
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Login from './components/Login'
+import { AuthProvider } from './context/AuthContext';
+import Feed from './components/feed';
+import PrivateRoute from './components/PrivateRoute';
+import ForgotP from './components/forgotp';
 
 
 
-let App=()=>{
+let App = () => {
   return (
     <>
-    <BrowserRouter>
-     
-        <Route exact path="/signUp" component={SignUp}/> 
-        <Route exact path="/login" component={Login}/>  
-     
-    
-    
-    
-    </BrowserRouter>
+      <BrowserRouter>
+        <AuthProvider>
+
+          <Switch>
+            <Route  path="/forgotp" component={ForgotP} />
+            <Route  path="/signUp" component={SignUp} />
+            <Route  path="/login" component={Login} />
+            <Route path="/" component={Feed} />
+            
+
+          </Switch>
+
+
+        </AuthProvider>
+      </BrowserRouter>
     </>
   )
 }

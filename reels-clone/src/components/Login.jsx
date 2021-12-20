@@ -10,21 +10,50 @@ import Alert from "@mui/material/Alert";
 import TextField from "@mui/material/TextField";
 import bg from "../images/insta.png";
 import { Link } from "react-router-dom";
-import {
-  CarouselProvider,
-  Slider,
-  Slide,
-  ButtonBack,
-  ButtonNext,
-  Image
-} from "pure-react-carousel";
+import {useContext,useState} from "react";
+import {CarouselProvider,Slider,Slide,Image} from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import img1 from  "../images/img1.jpg"
 import img2 from  "../images/img2.jpg"
 import img3 from  "../images/img3.jpg"
 import img4 from  "../images/img4.jpg"
 import img5 from  "../images/img5.jpg"
+import { useHistory } from "react-router-dom";
+import {AuthContext} from "../context/AuthContext";
 let Login = () => {
+
+const {login}=useContext(AuthContext);
+
+const [email,setEmail]=useState("");
+const [password,setPassword]=useState("");
+const [error,setError]=useState("");
+const [loading,setLoading]=useState(false);
+const history=useHistory();
+
+
+  let handleClick=async ()=>{
+      setLoading(true);
+      try{
+          setError("")
+
+          let userObj=await login(email,password);
+          console.log(userObj)
+          setLoading(false);
+          history.push("/")
+          
+      }
+      catch(err){
+        
+          setError(err);
+          setTimeout(()=>{setError("")},2000);
+          setLoading(false);
+
+      }
+  }
+
+
+
+
   const useStyle = makeStyles({
     text1: {
       color: "gray",
@@ -37,6 +66,7 @@ let Login = () => {
     },
   });
   const classes = useStyle();
+
   return (
     <>
       <div className="main-wrapper">
@@ -83,38 +113,42 @@ let Login = () => {
               </div>
 
               <CardContent>
-                {true && (
+                {error!="" && (
                   <Alert
                     severity="error"
                     variant="standard"
                     margin="dense"
                     size="small"
                   >
-                    This is an error alert — check it out!
+                    {error}
                   </Alert>
                 )}
                 <TextField
                   id="outlined-basic"
                   label="Email"
                   variant="outlined"
-                  fullWidth="true"
+                  fullWidth={true}
                   margin="dense"
                   size="small"
+                  value={email}
+                  onChange={(e)=>{setEmail(e.target.value)}}
                 />
                 <TextField
                   id="outlined-basic"
                   label="Password"
                   variant="outlined"
-                  fullWidth="true"
+                  fullWidth={true}
                   margin="dense"
                   size="small"
+                  value={password}
+                  onChange={(e)=>{setPassword(e.target.value)}}
                 />
                 <Typography
                   className={classes.text1}
                   margin="dense"
                   variant="subtitle1"
                 >
-                  <Link to="/signUp" style={{ textDecoration: "none" }}>
+                  <Link to="/forgotP" style={{ textDecoration: "none" }}>
                     Forgot Password?
                   </Link>
                 </Typography>
@@ -123,8 +157,9 @@ let Login = () => {
                 <Button
                   size="small"
                   color="primary"
-                  fullWidth="true"
+                  fullWidth={true}
                   variant="contained"
+                  onClick={()=>{handleClick()}}
                 >
                   Log In
                 </Button>

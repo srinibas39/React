@@ -1,0 +1,18 @@
+.button-styling{
+    position: absolute;
+    bottom: 2rem;
+    margin-left: 17px;
+    
+}
+
+
+.like{
+    cursor: pointer;
+    color: #e74c3c;
+
+}
+.unlike{
+    cursor: pointer;
+    color: white;
+
+}
