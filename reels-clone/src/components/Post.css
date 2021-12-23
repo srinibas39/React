@@ -21,4 +21,20 @@
     color: white;
 
 }
+.icon-styling{
+    position: relative;
+    bottom: 27px;
+    left: 3rem;
+    color: white;
+}
+.video-modal{
+    width: 50%;
+}
+.comment-modal{
+    width: 50%;
+}
+
+.card1{
+    height: 69vh;
+}
 
