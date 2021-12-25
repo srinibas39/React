@@ -7,6 +7,7 @@ import { AuthProvider } from './context/AuthContext';
 import Feed from './components/feed';
 import PrivateRoute from './components/PrivateRoute';
 import ForgotP from './components/forgotp';
+import "./App.css"
 
 
 
