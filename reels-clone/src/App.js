@@ -8,6 +8,8 @@ import Feed from './components/feed';
 import PrivateRoute from './components/PrivateRoute';
 import ForgotP from './components/forgotp';
 import "./App.css"
+import Profile from './components/Profile';
+import Ioa from './components/Ioa';
 
 
 
@@ -21,6 +23,7 @@ let App = () => {
             <Route  path="/forgotp" component={ForgotP} />
             <Route  path="/signUp" component={SignUp} />
             <Route  path="/login" component={Login} />
+            <Route path="/profile/:id" component={Profile}/>
             <Route path="/" component={Feed} />
             
 
@@ -29,6 +32,8 @@ let App = () => {
 
         </AuthProvider>
       </BrowserRouter>
+
+      {/* <Ioa/> */}
     </>
   )
 }

@@ -26,6 +26,7 @@ import Comment from "./Comment";
 
 let Post = ({ user }) => {
   const [allPosts, setAllPosts] = useState(null);
+  
 
   useEffect(() => {
     let parr = [];
@@ -51,6 +52,29 @@ let Post = ({ user }) => {
   const handleClose = () => {
     setOpen(null);
   };
+  
+  const callback=(enteries)=>{
+    enteries.forEach((entry)=>{
+        let ele=entry.target.childNodes[0];
+        ele.play().then(()=>{
+            if(!ele.paused && !entry.isIntersecting){
+                ele.pause();
+            }
+        })
+    })
+}
+let observer=new IntersectionObserver(callback,{
+    threshold:0.6
+})
+useEffect(()=>{
+    const elements=document.querySelectorAll(".video");
+    elements.forEach((el)=>{
+        observer.observe(el)
+    })
+ return()=>{
+    observer.disconnect();
+ }
+},[allPosts])
 
   return (
     <div>

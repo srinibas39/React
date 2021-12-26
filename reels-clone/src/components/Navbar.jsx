@@ -23,6 +23,8 @@ import { makeStyles } from "@mui/styles";
 import insta from "../images/instalogo.jpg"
 import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
+import Avatar from '@mui/material/Avatar';
+
 
 
 const useStyles=makeStyles({
@@ -192,7 +194,8 @@ export default function Navbar({ user }) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+             <Avatar  src={user.profileURL}/>
+
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
