@@ -16,7 +16,7 @@ console.log(props)
 
 const mapStateToProps=(state)=>{
     return {
-        bats:state.bats
+        bats:state.bat.bats
     }
 }
 
