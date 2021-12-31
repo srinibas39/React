@@ -4,10 +4,11 @@ import Button from '@material-ui/core/Button';
 import { connect } from "react-redux";
 // import { addToCart } from "../../redux/Shopping/shopping-actions";
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
+import * as actionTypes from "../../redux/action"
 // const SingleItem = ({ current, addToCart }) => {
-const SingleItem = (props) => {
+const SingleItem = ({current,addToCart}) => {
   // console.log(props.location);
-  const current=props.location.state
+  // const current=props.location.state
   return (
     <div className="s-container">
       <div className='img-container'>
@@ -25,8 +26,8 @@ const SingleItem = (props) => {
         
 
         <Button style={{backgroundColor:'#e67e22', marginTop:'5%'}}
-          onClick
           className={styles.details__addBtn}
+          onClick={()=>{addToCart(current.id)}}
         >
           <ShoppingCartOutlinedIcon/>&nbsp;
           Add To Cart
@@ -36,4 +37,15 @@ const SingleItem = (props) => {
   );
 };
 
-export default SingleItem;
+const mapStateToProps=(state)=>{
+  return {
+    current:state.currentItem
+  }
+}
+const  mapDispatchToProps=(dispatch)=>{
+  return{
+      addToCart:(id)=>dispatch({type:actionTypes.ADD_TO_CART,payload:{id:id}})
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SingleItem);

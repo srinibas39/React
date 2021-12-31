@@ -79,7 +79,7 @@ function Product2({ product, addToCart, loadCurrentItem }) {
 const mapDispatchToProps=(dispatch)=>{
    return {
       addToCart:(id)=>dispatch({type:actionTypes.ADD_TO_CART,payload:{id:id}}),
-      loadCurrentItem:(product)=>dispatch({type:actionTypes.LOAD_CURRENT_ITEM,payload:{product:product}})
+      loadCurrentItem:(item)=>dispatch({type:actionTypes.LOAD_CURRENT_ITEM,payload:{item:item}})
    }
 }
 
