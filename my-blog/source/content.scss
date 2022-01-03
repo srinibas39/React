@@ -1,0 +1,14 @@
+@use 'colors' as colors;
+body > content {
+    padding:40px;
+    margin:auto;
+    width:660px;
+    max-width:100%;
+    & > content {
+        background-color: colors.$content-box;
+        min-height:600px; // to look cool
+        border-radius:20px;
+        box-shadow:10px 10px 40px rgba(0,0,0,0.06);
+        padding:40px;
+    }
+}
