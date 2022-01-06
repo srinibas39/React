@@ -1,20 +1,23 @@
 import React from 'react';
 import {skinCodes} from '../../constants/typeCodes';
+import  {setDocument, updateDocument} from "../../redux/action/documentAction";
+import {connect} from "react-redux"
 // import * as actionTypes from '../../actions/actionTypes';
 // import { bindActionCreators } from 'redux';
 
 // import { withRouter } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-function GettingStarted(props) {
+function GettingStarted({document,setDocument,updateDocument}) {
      let history = useHistory();
-     const onChange = async (skinCd) => {
-
-        // if(props.document.id){
-        //     //  props.updateDocument(props.document.id, skinCd);        
-        // }
-        // else{
-        //     //  props.setDocument(skinCd); 
-        // }
+     const onChange = (skinCd) => {
+          if(document.id!=null){
+              updateDocument(skinCd)
+          }
+          else{
+              setDocument(skinCd);
+          }
+          
+        
         history.push('/contact');
       }
 
@@ -45,8 +48,20 @@ function GettingStarted(props) {
         );
     
 }
+
+const mapStateToProps=(state)=>{
+    return {
+        document:state.document
+    }
+}
+const mapDispatchToProps=(dispatch)=>{
+    return {
+        setDocument:(skinCd)=>dispatch(setDocument(skinCd)),
+        updateDocument:(skinCd)=>dispatch(updateDocument(skinCd))
+    }
+}
   
 
 
-export default GettingStarted
+export default connect(mapStateToProps,mapDispatchToProps)(GettingStarted)
 

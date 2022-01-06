@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { NavLink } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import ResumePreview from './resumePreview'
@@ -7,11 +7,19 @@ import {skinCodes, fieldCd} from './../../constants/typeCodes';
 // import * as educationActions from '../../actions/educationActions';
 // import {bindActionCreators} from 'redux';
 import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+
+import {setEducation,updateEducation} from "../../redux/action/educationAction"
 
 function Education(props) {
-  console.log('Education');
   let history = useHistory();
-  const [education,setEducation]= useState(props.educationSection);
+  const [education,setEducation]= useState(props.education);
+
+  useEffect(()=>{
+    if(props.document.id==null){
+      history.push("/gettingStarted");
+    } 
+  })
 
   const onchange = (event) => {
     var key =event.target.name;
@@ -25,13 +33,15 @@ function Education(props) {
     return "";
 }
   const onSubmit = async(e) => {
-    //console.log(this.state.educationSection);
-    // if(props.educationSection!=null){
-    //     props.updateEducation(props.document.id,education);
-    // }else{
-    //     props.addEducation(props.document.id,education);
-    // }
-     history.push('/finalize')
+     
+    if(props.contact!=null){
+       props.updateEducation(education);
+    }
+    else{
+      props.setEducation(education)
+    }
+    history.push("/finalize")
+    
   }
 
     
@@ -98,9 +108,22 @@ function Education(props) {
   }
 
 
+const mapStateToProps=(state)=>{
+  return {
+    document:state.document,
+    contact:state.contact,
+    education:state.education
+  }
+}
 
+const mapDispatchToProps=(dispatch)=>{
+  return {
+     setEducation:(education)=>dispatch(setEducation(education)),
+     updateEducation:(education)=>dispatch(updateEducation(education))
+  }
+}
   
 
 
-export default Education
+export default connect(mapStateToProps,mapDispatchToProps)(Education)
 
