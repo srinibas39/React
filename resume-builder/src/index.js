@@ -15,7 +15,6 @@ import { ReactReduxFirebaseProvider,getFirebase} from 'react-redux-firebase';
 import { createFirestoreInstance} from 'redux-firestore' // <- needed if using firestore
 
 
-const store=createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),reduxFirestore(firebase)))//binding for redux to get firestore
 
 const firebaseConfig = {
   apiKey: "AIzaSyDVXz0QVPRN4vPkXCCFNBb6syPISDlETzM",
@@ -28,6 +27,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.firestore();
 
+const store=createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),reduxFirestore(firebase)))//binding for redux to get firestore
 ReactDOM.render(
     
     <BrowserRouter>

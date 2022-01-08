@@ -1,5 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
+import { isEmpty, isLoaded } from "react-redux-firebase";
 import { NavLink } from "react-router-dom";
+import { signout } from "../../redux/action/authAction";
 import logo from "../../static/images/logo.png";
 
 function LoggesOut(props) {
@@ -19,10 +22,12 @@ function LoggesOut(props) {
   )
 }
 
-const Header = (props) => {
-  // const auth = props.auth;
+const Header = ({auth,signout}) => {
+  
   const handleLogOut=()=>{
-   console.log('The user will sign out');
+        signout();
+        console.log("user will sign out")
+        
   }
 
   return (  
@@ -33,12 +38,14 @@ const Header = (props) => {
       </a> 
         <div className="header-links full-height">
 
-        {/* { isLoaded(auth) && !isEmpty(auth) ?<> */}
+        
+
+        {isLoaded(auth) && !isEmpty(auth)?<>
 
           <ul>
             <li className="signin ">
               <NavLink className="  " to="/">
-               Logged in as 
+               Logged in as {auth.email}
               </NavLink>
             </li>
             <li className="signin"> 
@@ -48,18 +55,18 @@ const Header = (props) => {
             </li>
           </ul>
 
-        {/* </>:<LoggesOut></LoggesOut>} */}
+        </>:<LoggesOut></LoggesOut>}
           
           <ul id="nav-mid">
             <li>
-            <NavLink className="btn-nvt-gm" to="/resume-templates">
-            Resume Templates
-            </NavLink>
+              <NavLink className="btn-nvt-gm" to="/resume-templates">
+                  Resume Templates
+              </NavLink>
             </li> 
             <li className="holder-pricing">            
-              <NavLink className="btn-nvt-gm" to="/about-us">
-              About Us
-              </NavLink>
+                <NavLink className="btn-nvt-gm" to="/about-us">
+                    About Us
+                </NavLink>
             </li>        
           </ul>
             
@@ -70,14 +77,16 @@ const Header = (props) => {
   );
 };
 
-// const mapStateToProps=(state)=>{
-//   return{
-//      auth: state.firebase.auth
-//   }
-// }
-// const mapDispatchToProps= (dispatch)=>{
-//   return {
-//    signOut:()=>dispatch(authActions.signout())
-//   }
-// }
-export default Header;
+const mapStateToProps=(state)=>{
+  return {
+    auth:state.firebase.auth
+  }
+}
+
+const mapDispatchToProps=(dispatch)=>{
+  return {
+    signout:()=>dispatch(signout())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Header);
