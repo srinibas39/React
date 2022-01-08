@@ -10,12 +10,12 @@ function LoggesOut(props) {
     <ul>
       <li className="signup ">
         <NavLink className=" btnv-1" to="/register">
-        Register
+            Register
         </NavLink>
       </li>
       <li className="signin"> 
         <NavLink className="text-blue btnv-3" to="/login">
-        Sign In
+            Sign In
         </NavLink>         
       </li>
     </ul>
@@ -27,6 +27,7 @@ const Header = ({auth,signout}) => {
   const handleLogOut=()=>{
         signout();
         console.log("user will sign out")
+        
         
   }
 

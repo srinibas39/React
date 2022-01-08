@@ -7,7 +7,7 @@ import * as actionTypes from "./action";
 }
 
  const signupSuc=()=>{
-    return {type:actionTypes.SIGN_IN_SUCCESS}
+    return {type:actionTypes.SIGN_UP_SUCCESS}
 }
 
  const signupFail=(err)=>{
@@ -33,7 +33,9 @@ export const signup=(userData)=>{
             dispatch(signupSuc());   
         }).catch((err)=>{
             dispatch(signupFail(err));
-            setTimeout(dispatch(removeError()),2000)
+            setTimeout(()=>{
+                removeError(err)
+            },2000)
         })
 
    }
@@ -54,7 +56,7 @@ const signinFail=(error)=>{
 }
 
 export const signin=(userData)=>{
-   return async(dispatch,getState,{getFirestore,getFirebase})=>{
+   return async (dispatch,getState,{getFirestore,getFirebase})=>{
          
        dispatch(signinReq())
 
@@ -62,12 +64,14 @@ export const signin=(userData)=>{
        
        try{
 
-           const res=await firebase.auth().signWithEmailAndPassword(userData.email,userData.password);
+           const res=await firebase.auth().signInWithEmailAndPassword(userData.email,userData.password);
            dispatch(signinSuc());
        }
        catch(err){
            dispatch(signinFail(err));
-           setTimeout(dispatch(removeError()),2000)
+           setTimeout(()=>{
+               removeError(err)
+           },2000)
        }
     
 
@@ -83,12 +87,10 @@ export const signout=()=>{
           dispatch({type:actionTypes.SIGN_OUT_SUCCESS})
       }).catch((error)=>{
            dispatch({type:actionTypes.SIGN_OUT_FAIL,payload:error.message})
-           setTimeout(dispatch(removeError),2000)
+           setTimeout(()=>{
+            removeError(error)
+        },2000)
       })
-
-     
-      
-    
     }
 }
 
